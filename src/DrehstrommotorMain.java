@@ -61,8 +61,6 @@ public class DrehstrommotorMain {
                     drehmomentString = drehmomentString.replace(",",".");
                     double drehmoment = drehmomentString.isEmpty() ? 0 : Double.parseDouble(drehmomentString);
     
-                    //String spannungString = textfield3.getText();
-                    //int spannung = spannungString.isEmpty() ? 0 : Integer.parseInt(spannungString);
                     int spannung = (int) comboBox1.getSelectedItem();
 
                     String stromString = textfield4.getText();
