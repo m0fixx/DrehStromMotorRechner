@@ -17,40 +17,41 @@ public class DrehstrommotorMain {
         DoubleTextField textfield4 = StromstärkeEingabe(panel);
         DoubleTextField textfield5 = LeistungsfaktorEingabe(panel);
         DoubleTextField textfield6 = UbersetzungsverhaltnisEingabe(panel);
-        Berechnen(panel, textfield1, textfield2, comboBox1, textfield4, textfield5, textfield6);
+        JButton button = new JButton("Berechnen");
+        button.setBounds(5,115,500,43);
+        JLabel titleLabel1 = new JLabel("Leistungsaufnahme:");
+        titleLabel1.setBounds(5,193,150,15);
+        JLabel titleLabel2 = new JLabel("Abgegebene Leistung:");
+        titleLabel2.setBounds(5,228,150,15);
+        JLabel titleLabel3 = new JLabel("Verlustleistung:");
+        titleLabel3.setBounds(5,263,150,15);
+        JLabel titleLabel4 = new JLabel("Wirkungsgrad:");
+        titleLabel4.setBounds(5,298,150,15);
+        JLabel resultLabel1 = new JLabel();
+        resultLabel1.setBounds(170,193,150,15);
+        JLabel resultLabel2 = new JLabel();
+        resultLabel2.setBounds(170,228,150,15);
+        JLabel resultLabel3 = new JLabel();
+        resultLabel3.setBounds(170,263,150,15);
+        JLabel resultLabel4 = new JLabel();
+        resultLabel4.setBounds(170,298,150,15);
+        panel.add(button);
+        panel.add(titleLabel1);
+        panel.add(titleLabel2);
+        panel.add(titleLabel3);
+        panel.add(titleLabel4);
+        panel.add(resultLabel1);
+        panel.add(resultLabel2);
+        panel.add(resultLabel3);
+        panel.add(resultLabel4);
+        Berechnen(panel, textfield1, textfield2, comboBox1, textfield4, textfield5, textfield6, titleLabel1, titleLabel2, titleLabel3, titleLabel4, resultLabel1, resultLabel2, resultLabel3, resultLabel4, button);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
     }
 
             //Berechnung:
-            public static void Berechnen(JPanel panel, DoubleTextField textfield1, DoubleTextField textfield2, JComboBox<Integer> comboBox1, DoubleTextField textfield4, DoubleTextField textfield5,  DoubleTextField textfield6){
-                JButton button = new JButton("Berechnen");
-                button.setBounds(5,115,500,43);
-                JLabel titleLabel1 = new JLabel("Leistungsaufnahme:");
-                titleLabel1.setBounds(5,193,150,15);
-                JLabel titleLabel2 = new JLabel("Abgegebene Leistung:");
-                titleLabel2.setBounds(5,228,150,15);
-                JLabel titleLabel3 = new JLabel("Verlustleistung:");
-                titleLabel3.setBounds(5,263,150,15);
-                JLabel titleLabel4 = new JLabel("Wirkungsgrad:");
-                titleLabel4.setBounds(5,298,150,15);
-                JLabel resultLabel1 = new JLabel();
-                resultLabel1.setBounds(170,193,150,15);
-                JLabel resultLabel2 = new JLabel();
-                resultLabel2.setBounds(170,228,150,15);
-                JLabel resultLabel3 = new JLabel();
-                resultLabel3.setBounds(170,263,150,15);
-                JLabel resultLabel4 = new JLabel();
-                resultLabel4.setBounds(170,298,150,15);
-                panel.add(button);
-                panel.add(titleLabel1);
-                panel.add(titleLabel2);
-                panel.add(titleLabel3);
-                panel.add(titleLabel4);
-                panel.add(resultLabel1);
-                panel.add(resultLabel2);
-                panel.add(resultLabel3);
-                panel.add(resultLabel4);
+            public static void Berechnen(JPanel panel, DoubleTextField textfield1, DoubleTextField textfield2, JComboBox<Integer> comboBox1, DoubleTextField textfield4, DoubleTextField textfield5,  DoubleTextField textfield6,
+            JLabel titleLabel1, JLabel titleLabel2, JLabel titleLabel3,JLabel titleLabel4, JLabel resultLabel1, JLabel resultLabel2, JLabel resultLabel3, JLabel resultLabel4, JButton button){
         
                 button.addActionListener(e -> {
                     // Hole den eingegebenen Wert
