@@ -13,17 +13,17 @@ public class DrehstrommotorMain {
         panel.setLayout(null);
         DoubleTextField textfield1 = DrehzahlEingabe(panel);
         DoubleTextField textfield2 = DrehmomentEingabe(panel);
-        DoubleTextField textfield3 = SpannungEingabe(panel);
+        JComboBox<Integer> comboBox1 = SpannungEingabe(panel);
         DoubleTextField textfield4 = StromstärkeEingabe(panel);
         DoubleTextField textfield5 = LeistungsfaktorEingabe(panel);
         DoubleTextField textfield6 = UbersetzungsverhaltnisEingabe(panel);
-        Berechnen(panel, textfield1, textfield2, textfield3, textfield4, textfield5, textfield6);
+        Berechnen(panel, textfield1, textfield2, comboBox1, textfield4, textfield5, textfield6);
         frame.getContentPane().add(panel);
         frame.setVisible(true);
     }
 
             //Berechnung:
-            public static void Berechnen(JPanel panel, DoubleTextField textfield1, DoubleTextField textfield2, DoubleTextField textfield3, DoubleTextField textfield4, DoubleTextField textfield5,  DoubleTextField textfield6){
+            public static void Berechnen(JPanel panel, DoubleTextField textfield1, DoubleTextField textfield2, JComboBox<Integer> comboBox1, DoubleTextField textfield4, DoubleTextField textfield5,  DoubleTextField textfield6){
                 JButton button = new JButton("Berechnen");
                 button.setBounds(5,115,500,43);
                 JLabel titleLabel1 = new JLabel("Leistungsaufnahme:");
@@ -61,9 +61,10 @@ public class DrehstrommotorMain {
                     drehmomentString = drehmomentString.replace(",",".");
                     double drehmoment = drehmomentString.isEmpty() ? 0 : Double.parseDouble(drehmomentString);
     
-                    String spannungString = textfield3.getText();
-                    int spannung = spannungString.isEmpty() ? 0 : Integer.parseInt(spannungString);
-    
+                    //String spannungString = textfield3.getText();
+                    //int spannung = spannungString.isEmpty() ? 0 : Integer.parseInt(spannungString);
+                    int spannung = (int) comboBox1.getSelectedItem();
+
                     String stromString = textfield4.getText();
                     stromString = stromString.replace(",",".");
                     double strom = stromString.isEmpty() ? 0 : Double.parseDouble(stromString);
@@ -112,14 +113,14 @@ public class DrehstrommotorMain {
         }
     
         //Spannung Abfrage:
-        public static DoubleTextField SpannungEingabe(JPanel panel){
+        public static JComboBox<Integer> SpannungEingabe(JPanel panel){
             JLabel label3 = new JLabel ("Spannung");
             label3.setBounds(5,80,80,15);
-            DoubleTextField textfield3 = new DoubleTextField(true);
-            textfield3.setBounds(100, 80, 100,17);
+            JComboBox<Integer> comboBox1 = new JComboBox<>(new Integer[]{230, 400});
+            comboBox1.setBounds(100, 80, 100,17);
             panel.add(label3);
-            panel.add(textfield3);
-            return textfield3;
+            panel.add(comboBox1);
+            return comboBox1;
         }
     
         //Stromstärke Abfragen:
