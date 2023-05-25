@@ -49,53 +49,53 @@ public class DrehstrommotorMain {
         frame.setVisible(true);
     }
 
-            //Berechnung:
-            public static void Berechnen(JPanel panel, DoubleTextField textfield1, DoubleTextField textfield2, JComboBox<Integer> comboBox1, DoubleTextField textfield4, DoubleTextField textfield5,  DoubleTextField textfield6,
-            JLabel titleLabel1, JLabel titleLabel2, JLabel titleLabel3,JLabel titleLabel4, JLabel resultLabel1, JLabel resultLabel2, JLabel resultLabel3, JLabel resultLabel4, JButton button){
-        
-                button.addActionListener(e -> {
-                    // Hole den eingegebenen Wert
-                    String drehzahlString = textfield1.getText();
-                    int drehzahl = drehzahlString.isEmpty() ? 0 : Integer.parseInt(drehzahlString);
-                   
-                    String drehmomentString = textfield2.getText();
-                    drehmomentString = drehmomentString.replace(",",".");
-                    double drehmoment = drehmomentString.isEmpty() ? 0 : Double.parseDouble(drehmomentString);
-                    if (drehmoment < 1.0 || drehmoment > 6.0){
-                        JOptionPane.showMessageDialog(null, "Das Drehmoment muss zwischen 1,0 und 6,0 liegen");
-                        return;
-                    }
+        //Berechnung:
+        public static void Berechnen(JPanel panel, DoubleTextField textfield1, DoubleTextField textfield2, JComboBox<Integer> comboBox1, DoubleTextField textfield4, DoubleTextField textfield5,  DoubleTextField textfield6,
+        JLabel titleLabel1, JLabel titleLabel2, JLabel titleLabel3,JLabel titleLabel4, JLabel resultLabel1, JLabel resultLabel2, JLabel resultLabel3, JLabel resultLabel4, JButton button){
     
-                    int spannung = (int) comboBox1.getSelectedItem();
+            button.addActionListener(e -> {
+                // Hole den eingegebenen Wert
+                String drehzahlString = textfield1.getText();
+                int drehzahl = drehzahlString.isEmpty() ? 0 : Integer.parseInt(drehzahlString);
+                
+                String drehmomentString = textfield2.getText();
+                drehmomentString = drehmomentString.replace(",",".");
+                double drehmoment = drehmomentString.isEmpty() ? 0 : Double.parseDouble(drehmomentString);
+                if (drehmoment < 1.0 || drehmoment > 6.0){
+                    JOptionPane.showMessageDialog(null, "Das Drehmoment muss zwischen 1,0 und 6,0 liegen");
+                    return;
+                }
 
-                    String stromString = textfield4.getText();
-                    stromString = stromString.replace(",",".");
-                    double strom = stromString.isEmpty() ? 0 : Double.parseDouble(stromString);
-    
-                    String leistungsfaktorString = textfield5.getText();
-                    leistungsfaktorString = leistungsfaktorString.replace(",",".");
-                    double leistungsfaktor = leistungsfaktorString.isEmpty() ? 0 : Double.parseDouble(leistungsfaktorString);
-    
-                    String ubersetzungsverhaltnisString = textfield6.getText();
-                    ubersetzungsverhaltnisString = ubersetzungsverhaltnisString.replace(",",".");
-                    double ubersetzungsverhaltnis = ubersetzungsverhaltnisString.isEmpty() ? 0 : Double.parseDouble(ubersetzungsverhaltnisString);
-    
-                    Drehstrommotor sewMotor = new Drehstrommotor(drehzahl, drehmoment, spannung, strom, leistungsfaktor, ubersetzungsverhaltnis);
-                    double leistungsaufnahme = sewMotor.getLeistungsaufnahme();
-                    double leistungsabgabe = sewMotor.getLeistungsabgabe();
-                    double verlustleistung = sewMotor.getVerlustleistung();
-                    double wirkungsgrad = sewMotor.getWirkungsgrad();
+                int spannung = (int) comboBox1.getSelectedItem();
 
-                    if(leistungsaufnahme < 0 || leistungsabgabe < 0 || verlustleistung  < 0 || wirkungsgrad < 0){
-                        JOptionPane.showMessageDialog(null, "Überpfüfe die eingegebenen Werte, die Ergebnisse dürfen nicht negativ sein!");
-                    }
-    
-                    resultLabel1.setText(leistungsaufnahme+" kW");
-                    resultLabel2.setText(leistungsabgabe+" kW");
-                    resultLabel3.setText(verlustleistung+" kW");
-                    resultLabel4.setText(wirkungsgrad+" %");
-                });
-            }
+                String stromString = textfield4.getText();
+                stromString = stromString.replace(",",".");
+                double strom = stromString.isEmpty() ? 0 : Double.parseDouble(stromString);
+
+                String leistungsfaktorString = textfield5.getText();
+                leistungsfaktorString = leistungsfaktorString.replace(",",".");
+                double leistungsfaktor = leistungsfaktorString.isEmpty() ? 0 : Double.parseDouble(leistungsfaktorString);
+
+                String ubersetzungsverhaltnisString = textfield6.getText();
+                ubersetzungsverhaltnisString = ubersetzungsverhaltnisString.replace(",",".");
+                double ubersetzungsverhaltnis = ubersetzungsverhaltnisString.isEmpty() ? 0 : Double.parseDouble(ubersetzungsverhaltnisString);
+
+                Drehstrommotor sewMotor = new Drehstrommotor(drehzahl, drehmoment, spannung, strom, leistungsfaktor, ubersetzungsverhaltnis);
+                double leistungsaufnahme = sewMotor.getLeistungsaufnahme();
+                double leistungsabgabe = sewMotor.getLeistungsabgabe();
+                double verlustleistung = sewMotor.getVerlustleistung();
+                double wirkungsgrad = sewMotor.getWirkungsgrad();
+
+                if(leistungsaufnahme < 0 || leistungsabgabe < 0 || verlustleistung  < 0 || wirkungsgrad < 0){
+                    JOptionPane.showMessageDialog(null, "Überpfüfe die eingegebenen Werte, die Ergebnisse dürfen nicht negativ sein!");
+                }
+
+                resultLabel1.setText(leistungsaufnahme+" kW");
+                resultLabel2.setText(leistungsabgabe+" kW");
+                resultLabel3.setText(verlustleistung+" kW");
+                resultLabel4.setText(wirkungsgrad+" %");
+            });
+        }
     
     //Drehzahl Abfrage:
     public static DoubleTextField DrehzahlEingabe(JPanel panel){
