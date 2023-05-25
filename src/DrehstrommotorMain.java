@@ -61,6 +61,10 @@ public class DrehstrommotorMain {
                     String drehmomentString = textfield2.getText();
                     drehmomentString = drehmomentString.replace(",",".");
                     double drehmoment = drehmomentString.isEmpty() ? 0 : Double.parseDouble(drehmomentString);
+                    if (drehmoment < 1.0 || drehmoment > 6.0){
+                        JOptionPane.showMessageDialog(null, "Das Drehmoment muss zwischen 1,0 und 6,0 liegen");
+                        return;
+                    }
     
                     int spannung = (int) comboBox1.getSelectedItem();
 
@@ -81,6 +85,10 @@ public class DrehstrommotorMain {
                     double leistungsabgabe = sewMotor.getLeistungsabgabe();
                     double verlustleistung = sewMotor.getVerlustleistung();
                     double wirkungsgrad = sewMotor.getWirkungsgrad();
+
+                    if(leistungsaufnahme < 0 || leistungsabgabe < 0 || verlustleistung  < 0 || wirkungsgrad < 0){
+                        JOptionPane.showMessageDialog(null, "Überpfüfe die eingegebenen Werte, die Ergebnisse dürfen nicht negativ sein!");
+                    }
     
                     resultLabel1.setText(leistungsaufnahme+" kW");
                     resultLabel2.setText(leistungsabgabe+" kW");
